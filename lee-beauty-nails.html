@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lee Beauty Nails</title>
+<style>
+:root{--bg:#fde6e8;--bg2:#f6c4ca;--card:rgba(255,255,255,.6);--ink:#5a1a2b;--muted:#8a4b5b;--gold:#c79a4a;--accent:#7a2f40;--on:#fff;--line:#e8c4a4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1219;--card:#3a1b25;--ink:#f6dfe3;--muted:#d1a3ae;--gold:#d9b765;--accent:#d9798f;--on:#2a1219;--line:#6b4a3a}}
+:root[data-theme="dark"]{--bg:#2a1219;--card:#3a1b25;--ink:#f6dfe3;--muted:#d1a3ae;--gold:#d9b765;--accent:#d9798f;--on:#2a1219;--line:#6b4a3a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(165deg,var(--bg),var(--bg2,var(--bg))) fixed;color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;padding:24px 16px 48px}
+header{text-align:center;border-bottom:1px solid var(--gold);padding-bottom:16px;margin-bottom:20px}
+h1{margin:0;font-size:28px;letter-spacing:.5px}
+header p{margin:4px 0 0;color:var(--muted);font-style:italic}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tabs button{flex:1;padding:12px;border:1px solid var(--gold);background:transparent;color:var(--ink);font:inherit;border-radius:10px;cursor:pointer}
+.tabs button.on{background:var(--accent);color:var(--on);border-color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.info{font-size:14px;color:var(--muted);margin:0 0 14px}
+label{display:block;font-size:14px;margin:12px 0 4px;font-weight:bold}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.opt{display:flex;align-items:center;gap:8px;font-weight:normal;margin:6px 0}
+.opt input{width:auto}
+.sum{margin-top:18px;border-top:1px solid var(--gold);padding-top:12px;font-size:15px}
+.sum div{display:flex;justify-content:space-between;margin:3px 0}
+.sum .dep{font-weight:bold;font-size:17px}
+.go{margin-top:16px;width:100%;padding:14px;border:0;border-radius:10px;background:var(--accent);color:var(--on);font:inherit;font-size:16px;cursor:pointer}
+.err{color:#c0392b;font-size:14px;margin-top:8px;min-height:18px}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+.nl{letter-spacing:.5em;font-size:15px;margin-top:2px}
+header h1 em{font-weight:normal;margin-left:6px;font-size:1.2em}
+header p{letter-spacing:.18em;font-size:12px;font-style:normal}
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.prices div{background:rgba(214,120,140,.2);border-radius:14px;padding:10px;text-align:center;font-size:13px}
+.prices b{display:block;font-size:24px}
+.ban{background:var(--accent);color:var(--on);text-align:center;border-radius:999px;padding:10px;letter-spacing:.12em;font-size:13px;margin-bottom:8px}
+[hidden]{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>Lee<em>Beauty</em></h1><div class="nl">NAILS</div><p>LOOK GOOD • FEEL AMAZING</p></header>
+<div class="prices"><div>Solid Colour<b>R180</b></div><div>French Design<b>R200</b></div><div>Designs<b style="font-size:15px;margin-top:6px"><i>Prices vary</i></b></div><div>Nail Stickers<b>R5</b>per nail</div></div>
+<div class="ban">ONLY SUNDAY SLOTS AVAILABLE</div>
+<p class="note" style="text-align:center;margin:0 0 16px">Kenilworth, Cape Town · Appointment only · 50% deposit required</p>
+<div class="tabs">
+<button id="t1" class="on" type="button">Book Gel-X</button>
+<button id="t2" type="button">Order Press-On</button>
+</div>
+
+<section id="p1" class="card">
+<p class="info">Gel-X appointments are on Sundays only, 09:00–17:00. Each session is 2 hours, with a 30 min break in between. A 50% deposit is required to secure your slot.</p>
+<label for="gn">Full name</label><input id="gn" autocomplete="name">
+<label for="gp">Your WhatsApp number</label><input id="gp" type="tel" autocomplete="tel">
+<label for="gd">Sunday</label><select id="gd"></select>
+<label for="gt">Time slot</label>
+<select id="gt"></select>
+<div class="note" id="gfull" hidden>All slots are booked for this Sunday. Please pick another date.</div>
+<label for="gs">Style</label>
+<select id="gs"><option value="180">Solid colour – R180</option><option value="200">French – R200</option></select>
+<label for="gk">Nail stickers (R5 per nail)</label>
+<select id="gk"></select>
+<label class="opt"><input type="checkbox" id="gc"> Custom deco (price quoted by Lee)</label>
+<label for="gx">Notes / inspo</label><textarea id="gx" rows="2"></textarea>
+<div class="sum">
+<div><span>Estimated total</span><span id="g1"></span></div>
+<div class="dep"><span>50% deposit</span><span id="g2"></span></div>
+</div>
+<p class="note" id="gn2" hidden>Custom deco is not included in the total. Lee will confirm the final price.</p>
+<div class="err" id="ge"></div>
+<button class="go" id="gb" type="button">Book on WhatsApp</button>
+</section>
+
+<section id="p2" class="card" hidden>
+<p class="info">Press-on nails are made to order. Delivery takes 5–7 days. A 50% deposit is required to start your order.</p>
+<label for="pn">Full name</label><input id="pn" autocomplete="name">
+<label for="pp">Your WhatsApp number</label><input id="pp" type="tel" autocomplete="tel">
+<label for="ps">Style</label>
+<select id="ps"><option value="200">Solid colour – R200</option><option value="280">Custom deco – R280</option></select>
+<label for="pq">Number of sets</label>
+<select id="pq"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+<label for="pz">Nail sizes / shape / length</label><textarea id="pz" rows="2"></textarea>
+<label for="pa">Delivery address</label><textarea id="pa" rows="2"></textarea>
+<label for="px">Colour / design details</label><textarea id="px" rows="2"></textarea>
+<div class="sum">
+<div><span>Total</span><span id="p1t"></span></div>
+<div class="dep"><span>50% deposit</span><span id="p2t"></span></div>
+</div>
+<div class="err" id="pe"></div>
+<button class="go" id="pb" type="button">Order on WhatsApp</button>
+</section>
+<p class="note" style="text-align:center">Your request opens in WhatsApp. Lee will reply with deposit details to confirm.</p>
+<section id="out" class="card" style="margin-top:16px" hidden>
+<p class="info"><b>Almost done!</b> Tap the button to send this to Lee on WhatsApp. If it doesn’t open, copy the message and send it to 071 812 7561.</p>
+<a id="ol" class="go" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Open WhatsApp</a>
+<textarea id="om" rows="9" readonly style="margin-top:12px"></textarea>
+<button class="go" id="oc" type="button" style="background:transparent;color:var(--ink);border:1px solid var(--gold)">Copy message</button>
+</section>
+<section id="adm" class="card" style="margin-top:16px" hidden></section>
+<script id="state" type="application/json">{"booked":[]}</script>
+</div>
+<script>
+var NUM="27718127561";
+var $=function(i){return document.getElementById(i)};
+var R=function(n){return "R"+n};
+// tabs
+function tab(n){$("p1").hidden=n!==1;$("p2").hidden=n!==2;$("t1").className=n===1?"on":"";$("t2").className=n===2?"on":""}
+$("t1").onclick=function(){tab(1)};$("t2").onclick=function(){tab(2)};
+// Sundays: next 8, starting after today
+var d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+((7-d.getDay())%7||7));
+for(var i=0;i<8;i++){var o=document.createElement("option");
+o.value=d.toDateString();o.textContent=d.toLocaleDateString("en-ZA",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+$("gd").appendChild(o);d.setDate(d.getDate()+7)}
+for(var k=0;k<=10;k++){var s=document.createElement("option");s.value=k;s.textContent=k===0?"None":k+" nails (R"+k*5+")";$("gk").appendChild(s)}
+function gcalc(){var t=+$("gs").value+$("gk").value*5;$("g1").textContent=R(t);$("g2").textContent=R(t/2);$("gn2").hidden=!$("gc").checked;return t}
+function pcalc(){var t=+$("ps").value*+$("pq").value;$("p1t").textContent=R(t);$("p2t").textContent=R(t/2);return t}
+["gs","gk","gc"].forEach(function(i){$(i).onchange=gcalc});
+["ps","pq"].forEach(function(i){$(i).onchange=pcalc});
+var SL=["09:00 – 11:00","11:30 – 13:30","14:00 – 16:00"];
+var BK=(JSON.parse($("state").textContent).booked)||[];var OWN=false;
+function slots(){var dt=$("gd").value,cur=$("gt").value,f=[];$("gt").innerHTML="";
+SL.forEach(function(s){var o=document.createElement("option"),b=BK.indexOf(dt+"|"+s)>-1;o.value=s;o.textContent=b?s+" (booked)":s;o.disabled=b;if(!b)f.push(s);$("gt").appendChild(o)});
+if(f.length)$("gt").value=f.indexOf(cur)>-1?cur:f[0];$("gfull").hidden=f.length>0;$("gb").disabled=f.length===0}
+function adm(){var p=$("adm");if(!OWN){p.hidden=true;return}p.hidden=false;var dt=$("gd").value;
+p.innerHTML='<p class="info"><b>Lee only:</b> tick the slots that are taken on the Sunday selected above, then save. Customers will see them as booked.</p>';
+SL.forEach(function(s){var l=document.createElement("label"),c=document.createElement("input");l.className="opt";c.type="checkbox";c.checked=BK.indexOf(dt+"|"+s)>-1;
+c.onchange=function(){var k=dt+"|"+s,i=BK.indexOf(k);if(c.checked&&i<0)BK.push(k);if(!c.checked&&i>-1)BK.splice(i,1);slots()};
+l.appendChild(c);l.appendChild(document.createTextNode(" "+s));p.appendChild(l)});
+var b=document.createElement("button");b.className="go";b.type="button";b.textContent="Save booked slots";b.onclick=save;p.appendChild(b)}
+async function save(){try{var a=await claude.use("artifact");if(!a){alert("Saving isn’t available here.");return}
+var c=document.documentElement.cloneNode(true);
+c.querySelector("#state").textContent=JSON.stringify({booked:BK});
+["gd","gk","gt","adm","ge","pe"].forEach(function(i){c.querySelector("#"+i).innerHTML=""});
+c.querySelector("#adm").setAttribute("hidden","");c.querySelector("#out").setAttribute("hidden","");c.querySelector("#p1").removeAttribute("hidden");c.querySelector("#p2").setAttribute("hidden","");
+c.querySelector("#t1").className="on";c.querySelector("#t2").className="";
+await a.publish("<!DOCTYPE html>\n"+c.outerHTML)}catch(e){console.error(e)}}
+$("gd").onchange=function(){slots();adm()};
+gcalc();pcalc();slots();
+(async function(){try{var u=window.claude&&await claude.use("user");if(u&&await u.isOwner()){OWN=true;adm()}}catch(e){}})();
+function send(msg){var u="https://wa.me/"+NUM+"?text="+encodeURIComponent(msg);
+$("om").value=msg;$("ol").href=u;$("out").hidden=false;$("oc").textContent="Copy message";
+try{$("out").scrollIntoView({behavior:"smooth"})}catch(e){}
+try{window.open(u,"_blank")}catch(e){}}
+$("oc").onclick=function(){var t=$("om");t.select();try{navigator.clipboard.writeText(t.value)}catch(e){try{document.execCommand("copy")}catch(e2){}}$("oc").textContent="Copied"};
+function txt(sel){return sel.options[sel.selectedIndex].text}
+$("gb").onclick=function(){
+if(!$("gn").value.trim()||!$("gp").value.trim()){$("ge").textContent="Please add your name and WhatsApp number.";return}
+if(BK.indexOf($("gd").value+"|"+$("gt").value)>-1){$("ge").textContent="That slot is taken. Please choose another.";return}
+$("ge").textContent="";var t=gcalc();
+send("Hi Lee Beauty Nails! New Gel-X booking request\n\nName: "+$("gn").value.trim()+"\nNumber: "+$("gp").value.trim()+
+"\nDate: "+txt($("gd"))+"\nTime: "+$("gt").value+"\nStyle: "+txt($("gs"))+"\nStickers: "+$("gk").value+" nails"+
+"\nCustom deco: "+($("gc").checked?"Yes (please quote)":"No")+"\nNotes: "+($("gx").value.trim()||"-")+
+"\n\nEstimated total: "+R(t)+"\n50% deposit: "+R(t/2))};
+$("pb").onclick=function(){
+if(!$("pn").value.trim()||!$("pp").value.trim()||!$("pa").value.trim()){$("pe").textContent="Please add your name, number and delivery address.";return}
+$("pe").textContent="";var t=pcalc();
+send("Hi Lee Beauty Nails! New press-on order\n\nName: "+$("pn").value.trim()+"\nNumber: "+$("pp").value.trim()+
+"\nStyle: "+txt($("ps"))+"\nSets: "+$("pq").value+"\nSizes/shape/length: "+($("pz").value.trim()||"-")+
+"\nDesign details: "+($("px").value.trim()||"-")+"\nDelivery address: "+$("pa").value.trim()+
+"\n\nTotal: "+R(t)+"\n50% deposit: "+R(t/2)+"\nDelivery: 5-7 days")};
+</script>
+</body>
+</html>
